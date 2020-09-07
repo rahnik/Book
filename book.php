@@ -4,7 +4,7 @@ require_once 'models/Book.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$book = Book::findById($id);
+$book = Book::findAll($id);
 
 var_dump($book);
 
