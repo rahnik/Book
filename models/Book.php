@@ -2,39 +2,36 @@
 
 require_once 'dbconnect.php';
 
-class Book { 
-/*
-    public function findById ( $id ) {
+    class Book{
 
-        global $pdo;
+        public static function findById($id){
 
-        $stmt = $pdo->prepare('SELECT * FROM books WHERE id=:id');
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Book');
-        $stmt->execute(['id' => $id]);
+            global $pdo;
 
-        return $stmt->fetch();
+            $stmt = $pdo->prepare('SELECT * FROM books WHERE id=:id');
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'book');
+            $stmt->execute(['id' => $id]);
 
-    } */
+            return $stmt->fetch();
+        }
 
-    public function findAll ( $id ) {
+        public static function findAll() {
 
-        global $pdo;
+            global $pdo;
 
-        $stmt = $pdo->prepare('SELECT * FROM books');
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Book');
-        $stmt->execute();
+            $stmt = $pdo->prepare('SELECT * FROM books');
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'book');
+            $stmt->execute();
 
-        return $stmt->fetchAll();
+            return $stmt->fetchAll();
+        }
 
+        public function delete(){
+
+            global $pdo;
+
+            $stmt = $pdo->prepare('DELETE FROM books WHERE id=:id');
+
+            $stmt->execute(['id' => $this->id]);
+        }
     }
-
-    public function delete () {
-
-        global $pdo;
-
-        $stmt = $pdo->prepare('DELETE * FROM books WHERE id=id');
-        
-        $stmt->execute();
-    }
-
-}
