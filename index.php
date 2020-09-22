@@ -1,6 +1,6 @@
 <?php
 
-require_once 'models/Book.php';
+require_once 'autoload.php';
 
 $books = Book::findAll(); ?>
 
@@ -14,8 +14,12 @@ $books = Book::findAll(); ?>
 <body>
     <ul>
         <?php foreach($books as $book){ ?>
-        <li><a href="book.php?id=<?php echo $book->id; ?>"><?php echo $book->title; ?> </a></li>
+        <li>
+        <a href="book.php?id=<?php echo $book->id; ?>"><?php echo $book->title; ?> </a>
+        </li>
         <?php } ?>
     </ul>
 </body>
 </html>
+
+

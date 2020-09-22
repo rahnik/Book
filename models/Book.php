@@ -1,7 +1,5 @@
 <?php
 
-require_once 'dbconnect.php';
-
     class Book{
 
         public static function findById($id){
@@ -16,7 +14,7 @@ require_once 'dbconnect.php';
         }
 
         public static function findAll() {
-
+            
             global $pdo;
 
             $stmt = $pdo->prepare('SELECT * FROM books');
@@ -31,7 +29,20 @@ require_once 'dbconnect.php';
             global $pdo;
 
             $stmt = $pdo->prepare('DELETE FROM books WHERE id=:id');
-
+    
             $stmt->execute(['id' => $this->id]);
         }
+
+        public function update(){
+
+            global $pdo;
+
+            $stmt = $pdo->prepare('UPDATE books SET title=:title WHERE id=:id');
+            //$SubjectValues = [];
+            $stmt->execute(['title' => $this->title, 'id' => $this->id]);
+           
+        }
     }
+    //global $pdo;
+
+    //$stmt = $pdo->prepare('UPDATE books SET title='$title' WHERE id='id'')

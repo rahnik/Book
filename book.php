@@ -1,10 +1,10 @@
 <?php
 
-require_once 'models/Book.php';
+require_once 'autoload.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$book = Book::findById($id);
+$oBook = Book::findById($id);
 
 
 ?>
@@ -17,7 +17,8 @@ $book = Book::findById($id);
     <title>Document</title>
 </head>
 <body>
-    <h1><?php echo $book->title;?></h1>
-    <a href="delete.php?id=<?php echo($id); ?>">Delete</a>
+    <h1><?php echo $oBook->title;?></h1>
+    <a href="editform.php?id=<?php echo $oBook->id; ?>">Edit</a>
+    <a href="delete.php?id=<?php echo $oBook->id; ?>">Delete</a>
 </body>
 </html>
